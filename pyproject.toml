@@ -28,6 +28,7 @@ packages = [
 [tool.poetry.dependencies]
 python = "^3.12"
 django = "^5.0.7"
+django-sage-tools = "^0.1.2"
 
 [tool.poetry.group.dev.dependencies]
 black = "^24.4.2"
