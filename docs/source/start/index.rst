@@ -11,6 +11,7 @@ Welcome to the Getting Started guide for Django Sage Blog! This section will hel
    installation
    database
    views
+   admin
 
 Indices and Tables
 ==================
