@@ -147,7 +147,7 @@ class PostQuerySet(QuerySet):
 
             elif "mysql" in database_engine or "mariadb" in database_engine:
                 return self.filter(
-                    Q(title__search=search_query) | Q(description__search=search_query)
+                    Q(title__icontains=search_query) | Q(description__icontains=search_query)
                 )
 
             elif "sqlite" in database_engine:
@@ -177,30 +177,29 @@ class PostQuerySet(QuerySet):
         a simple substring search, but it requires pg_trgm extension for Postgresql.
         """
         database_engine = settings.DATABASES["default"]["ENGINE"]
-        if search_query and "postgresql" in database_engine:
 
-            if "postgresql" in database_engine:
-                return (
-                    self.annotate(
-                        similarity=TrigramSimilarity("title", search_query) +
-                                    TrigramSimilarity("description", search_query)
-                    )
-                    .filter(similarity__gt=0.1)
-                    .order_by("-similarity")
+        if "postgresql" in database_engine:
+            return (
+                self.annotate(
+                    similarity=TrigramSimilarity("title", search_query) +
+                                TrigramSimilarity("description", search_query)
                 )
+                .filter(similarity__gt=0.1)
+                .order_by("-similarity")
+            )
 
-            elif "mysql" in database_engine or "mariadb" in database_engine:
-                # MariaDB does not support trigram similarity directly
-                # Mysql does not support trigram similarity directly
-                return self.filter(
-                    Q(title__icontains=search_query) | Q(description__icontains=search_query)
-                )
+        elif "mysql" in database_engine or "mariadb" in database_engine:
+            # MariaDB does not support trigram similarity directly
+            # Mysql does not support trigram similarity directly
+            return self.filter(
+                Q(title__icontains=search_query) | Q(description__icontains=search_query)
+            )
 
-            elif "sqlite" in database_engine:
-                # SQLite does not support trigram similarity directly
-                return self.filter(
-                    Q(title__icontains=search_query) | Q(description__icontains=search_query)
-                )
+        elif "sqlite" in database_engine:
+            # SQLite does not support trigram similarity directly
+            return self.filter(
+                Q(title__icontains=search_query) | Q(description__icontains=search_query)
+            )
 
         return self.none()
 
