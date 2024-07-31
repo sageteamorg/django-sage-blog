@@ -15,10 +15,16 @@ class SageBlogContextMixin(ContextMixin):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context[self.categories_context_name] = PostCategory.dal.annotate_total_posts()
-        context[self.recent_posts_context_name] = Post.dal.filter_recent_posts(self.recent_posts_limit)
+        context[self.recent_posts_context_name] = Post.dal.filter_recent_posts(
+            self.recent_posts_limit
+        )
         context[self.tags_context_name] = (
             PostTag.dal.exclude_inactive_posts()
             .annotate_total_posts()
-            .filter_trend_tags(days_ago=self.tags_days_ago, min_count=self.tags_min_count, limit=self.tags_limit)
+            .filter_trend_tags(
+                days_ago=self.tags_days_ago,
+                min_count=self.tags_min_count,
+                limit=self.tags_limit,
+            )
         )
         return context

@@ -164,7 +164,7 @@ class PostQuerySet(QuerySet):
         This method supports partial word matches and is more linguistically aware than
         a simple substring search, but it requires PostgreSQL with pg_trgm extension.
         """
-        if search_query and 'postgresql' in settings.DATABASES['default']['ENGINE']:
+        if search_query and "postgresql" in settings.DATABASES["default"]["ENGINE"]:
             return (
                 self.annotate(
                     similarity=TrigramSimilarity("title", search_query)
@@ -196,7 +196,7 @@ class PostQuerySet(QuerySet):
             return substring_qs
 
         # Step 3: Trigram similarity search (if supported by the database)
-        if 'postgresql' in settings.DATABASES['default']['ENGINE']:
+        if "postgresql" in settings.DATABASES["default"]["ENGINE"]:
             trigram_qs = self.trigram_similarity_search(search_query)
             if trigram_qs.exists():
                 return trigram_qs

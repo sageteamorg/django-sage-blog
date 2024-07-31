@@ -13,24 +13,20 @@ except ImportError:
 try:
     import readtime
 except ImportError:
-    raise ImportError(
-        "Install `readtime` package. Run `pip install readtime` "
-    )
+    raise ImportError("Install `readtime` package. Run `pip install readtime` ")
 
 from sage_seo.models.mixins.seo import SEOMixin, BlogDetailJsonLdMixin
 from sage_tools.mixins.models.abstract import PictureOperationAbstract
-from sage_tools.mixins.models.base import (
-    TimeStampMixin,
-    TitleSlugDescriptionMixin
-)
-
+from sage_tools.mixins.models.base import TimeStampMixin, TitleSlugDescriptionMixin
+from sage_blog.repository.managers import PostDataAccessLayer
 
 class Post(
     TitleSlugDescriptionMixin,
     PictureOperationAbstract,
     SEOMixin,
     BlogDetailJsonLdMixin,
-    TimeStampMixin):
+    TimeStampMixin,
+):
     """
     Represents a blog post in the system.
     """
@@ -57,7 +53,7 @@ class Post(
 
     picture = ImageField(
         _("Picture of Post"),
-        upload_to="blog/posts/",
+        upload_to="blog/posts/pictures/",
         width_field="width_field",
         height_field="height_field",
         help_text=_(
@@ -68,7 +64,7 @@ class Post(
 
     banner = ImageField(
         _("Banner of Post Detail"),
-        upload_to="blog/posts/",
+        upload_to="blog/posts/banners/",
         null=True,
         blank=True,
         help_text=_(
@@ -80,7 +76,7 @@ class Post(
     published_at = models.DateTimeField(
         _("Published At"),
         default=timezone.now,
-        help_text=_("The date and time when the post was published.")
+        help_text=_("The date and time when the post was published."),
     )
 
     tags = models.ManyToManyField(
@@ -99,7 +95,7 @@ class Post(
         db_comment="The category to which the blog post belongs.",
     )
 
-    objects = models.Manager()
+    objects = PostDataAccessLayer()
 
     def get_absolute_url(self):
         """
@@ -120,8 +116,8 @@ class Post(
         verbose_name = _("Post")
         verbose_name_plural = _("Posts")
         default_manager_name = "objects"
-        db_table = 'sage_post'
-        db_table_comment = 'Table for preserving blog posts'
+        db_table = "sage_post"
+        db_table_comment = "Table for preserving blog posts"
 
     @property
     def reading_time(self):
@@ -133,9 +129,10 @@ class Post(
         """
         result = readtime.of_text(self.description)
         # Extracting minutes from the result text (e.g., "1 min read" -> 1)
-        minutes = int(result.text.split()[0])  # assuming the format is always "X min read"
+        minutes = int(
+            result.text.split()[0]
+        )  # assuming the format is always "X min read"
         return minutes
-
 
     def __str__(self):
         return str(self.title)

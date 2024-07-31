@@ -2,14 +2,15 @@ from django.conf import settings
 from django.core.checks import Error, Warning, register
 from django.db import connection, OperationalError
 
+
 @register()
 def check_postgres_extensions(app_configs, **kwargs):
     errors = []
     warnings = []
 
     # Dynamically check the database engine
-    database_engine = settings.DATABASES['default']['ENGINE']
-    if 'postgresql' in database_engine:
+    database_engine = settings.DATABASES["default"]["ENGINE"]
+    if "postgresql" in database_engine:
         try:
             with connection.cursor() as cursor:
                 cursor.execute("SELECT 1 FROM pg_extension WHERE extname='pg_trgm';")

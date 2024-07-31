@@ -5,14 +5,14 @@ from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 
 from sage_tools.mixins.models.base import TimeStampMixin, TitleSlugMixin
-
+from sage_blog.repository.managers import TagDataAccessLayer
 
 class PostTag(TitleSlugMixin, TimeStampMixin):
     """
     Post Tag Model
     """
 
-    objects = models.Manager()
+    objects = TagDataAccessLayer()
 
     class Meta:
         """
@@ -22,8 +22,8 @@ class PostTag(TitleSlugMixin, TimeStampMixin):
         verbose_name = _("Tag")
         verbose_name_plural = _("Tags")
         default_manager_name = "objects"
-        db_table = 'sage_post_tag'
-        db_table_comment = 'Table for preserving blog post tags'
+        db_table = "sage_post_tag"
+        db_table_comment = "Table for preserving blog post tags"
 
     def get_absolute_url(self):
         """

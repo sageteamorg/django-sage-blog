@@ -5,21 +5,21 @@ from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 
 from sage_tools.mixins.models.base import TimeStampMixin, TitleSlugMixin
-
+from sage_blog.repository.managers import CategoryDataAccessLayer
 
 class PostCategory(TitleSlugMixin, TimeStampMixin):
     """
     Post Category
     """
 
-    objects = models.Manager()
+    objects = CategoryDataAccessLayer()
 
     class Meta:
         verbose_name = _("Category")
         verbose_name_plural = _("Categories")
         default_manager_name = "objects"
-        db_table = 'sage_post_category'
-        db_table_comment = 'Table for categorizing blog posts'
+        db_table = "sage_post_category"
+        db_table_comment = "Table for categorizing blog posts"
 
     def __str__(self):
         return str(self.title)

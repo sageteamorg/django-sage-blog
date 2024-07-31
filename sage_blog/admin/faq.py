@@ -1,6 +1,7 @@
 """
 FAQ Administrators
 """
+
 from django.contrib import admin
 
 from sage_blog.models import PostFaq
@@ -13,21 +14,9 @@ class PostFaqAdmin(admin.ModelAdmin):
     """
 
     admin_priority = 5
-    list_display = (
-        "question",
-        "post",
-        "created_at",
-        "modified_at"
-    )
-    list_filter = (
-        "created_at",
-        "modified_at"
-    )
-    search_fields = (
-        "question",
-        "answer",
-        "post__title"
-    )
+    list_display = ("question", "post", "created_at", "modified_at")
+    list_filter = ("created_at", "modified_at")
+    search_fields = ("question", "answer", "post__title")
     list_select_related = ("post",)
     autocomplete_fields = ("post",)
     fieldsets = (

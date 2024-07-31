@@ -16,19 +16,9 @@ class PostCategoryAdmin(admin.ModelAdmin):
 
     # Display settings
     admin_priority = 1
-    list_display = (
-        "title",
-        "slug",
-        "created_at",
-        "modified_at"
-    )
-    list_filter = (
-        "created_at",
-        "modified_at"
-    )
-    search_fields = (
-        "title",
-    )
+    list_display = ("title", "slug", "created_at", "modified_at")
+    list_filter = ("created_at", "modified_at")
+    search_fields = ("title",)
     date_hierarchy = "created_at"
     ordering = ("title",)
     save_on_top = True
