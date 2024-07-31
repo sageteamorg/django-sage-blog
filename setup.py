@@ -5,7 +5,7 @@ with open("README.md", encoding="utf-8") as f:
 
 setup(
     name="django-sage-blog",
-    version="0.1.0",
+    version="0.1.2",
     author="Sepehr Akbarzadeh",
     author_email="info@sageteam.org",
     description="Comprehensive Django package designed to seamlessly integrate blogging capabilities into your Django project.",
