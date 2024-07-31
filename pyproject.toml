@@ -1,0 +1,52 @@
+[tool.poetry]
+name = "django-sage-blog"
+version = "0.1.0"
+description = "Comprehensive Django package designed to seamlessly integrate blogging capabilities into your Django project."
+authors = ["Sepehr Akbarzadeh <sepehr@sageteam.org>"]
+readme = "README.md"
+license = "MIT"
+keywords = ["python", "blog", "python-packages"]
+repository = "https://github.com/sageteamorg/django-sage-blog"
+
+classifiers=[
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Intended Audience :: Developers",
+]
+
+packages = [
+    { include = "sage_blog" }
+]
+
+[tool.poetry.urls]
+"Documentation" = "https://django-sage-blog.readthedocs.io/en/latest/"
+"Source Code" = "https://github.com/sageteamorg/django-sage-blog"
+"Issues" = "https://github.com/sageteamorg/django-sage-blog/issues"
+
+
+[tool.poetry.dependencies]
+python = "^3.12"
+django = "^5.0.7"
+
+[tool.poetry.group.dev.dependencies]
+black = "^24.4.2"
+isort = "^5.13.2"
+mypy = "^1.10.1"
+pytest = "^8.2.2"
+flake8 = "^7.1.0"
+tox = "^4.15.1"
+coverage = "^7.5.4"
+pre-commit = "^3.7.1"
+sphinx = "^7.3.7"
+pylint = "^3.2.5"
+pytest-cov = "^5.0.0"
+sphinx-rtd-theme = "^2.0.0"
+commitizen = "^3.27.0"
+docformatter = "^1.7.5"
+types-setuptools = "^70.2.0.20240704"
+codecov = "^2.1.13"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

@@ -1,0 +1,9 @@
+[run]
+branch = True
+source = sage_imap
+
+[report]
+omit =
+    tests/*
+    .tox/*
+    docs/*
