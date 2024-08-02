@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "django-sage-blog"
-version = "0.1.5"
+version = "0.1.6"
 description = "Comprehensive Django package designed to seamlessly integrate blogging capabilities into your Django project."
 authors = ["Sepehr Akbarzadeh <sepehr@sageteam.org>"]
 readme = "README.md"
@@ -30,11 +30,11 @@ python = "^3.12"
 django = "^5.0.7"
 sorl-thumbnail = "^12.10.0"
 readtime = "^3.0.0"
-django-sage-seo = {extras = ["json-forms"], version = "^0.2.3"}
 django-sage-tools = "^0.1.3"
 django-jsonform = "^2.22.0"
 pillow = "^10.4.0"
 django-filter = "^24.2"
+django-sage-seo = "^0.3.1"
 
 [tool.poetry.group.dev.dependencies]
 black = "^24.4.2"

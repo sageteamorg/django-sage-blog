@@ -531,13 +531,13 @@ jsonschema = "*"
 
 [[package]]
 name = "django-sage-seo"
-version = "0.2.3"
+version = "0.3.1"
 description = "SEO tools for Django"
 optional = false
 python-versions = "<4.0,>=3.12"
 files = [
-    {file = "django_sage_seo-0.2.3-py3-none-any.whl", hash = "sha256:90fd57629aec8271a912e9798b8f15c0ecb3e84cb9731db840733e353c288a03"},
-    {file = "django_sage_seo-0.2.3.tar.gz", hash = "sha256:12e753090016752ab78e3ed4b10322b880aea3cd1d070904da15610b30a60726"},
+    {file = "django_sage_seo-0.3.1-py3-none-any.whl", hash = "sha256:d3fcacecac9bb97f90e36550054dd68ebd013f5b2cc75de9eb27d52a6429a83e"},
+    {file = "django_sage_seo-0.3.1.tar.gz", hash = "sha256:eb00c0043a59f97a07b5f8e89afc3aa8e77214503a02636762d8c66887211c55"},
 ]
 
 [package.dependencies]
@@ -1963,4 +1963,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.12"
-content-hash = "389a48ccae843e916245b06cc14cfc5a923e83c1193d0f6374322f5d5970bbfa"
+content-hash = "13dfa753094f0a28fce5f7bb1494e6809ed209fb74d36169465cbcea4c503bec"
