@@ -25,15 +25,6 @@ class PostTag(TitleSlugMixin, TimeStampMixin):
         db_table = "sage_post_tag"
         db_table_comment = "Table for preserving blog post tags"
 
-    def get_absolute_url(self):
-        """
-        Get Absolute URL
-        """
-        base_url = reverse("pages:blog-post-list")
-        query_params = urlencode({"tag": self.slug})
-        full_url = f"{base_url}?{query_params}"
-        return full_url
-
     def __str__(self):
         return str(self.title)
 
