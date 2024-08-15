@@ -33,7 +33,7 @@ class PostAdmin(admin.ModelAdmin, AdminImageMixin):
         "published_at",
         "modified_at",
     )
-    list_filter = ("is_active", "category", "tags", "published_at", "modified_at")
+    list_filter = ("is_active", "category", "published_at", "modified_at")
     search_fields = (
         "title",
         "slug",
@@ -109,15 +109,15 @@ class PostAdmin(admin.ModelAdmin, AdminImageMixin):
         ),
     )
 
-    def get_tags(self, obj):
+    @staticmethod
+    @admin.display(description=_("Tags"))
+    def get_tags(obj):
         return ", ".join([tag.title for tag in obj.tags.all()])
 
-    get_tags.short_description = _("Tags")
-
-    def get_summary(self, obj):
+    @staticmethod
+    @admin.display(description=_("Summary"))
+    def get_summary(obj):
         return obj.summary if obj.summary else _("No Summary")
-
-    get_summary.short_description = _("Summary")
 
     # Filter customization
     def get_queryset(self, request):

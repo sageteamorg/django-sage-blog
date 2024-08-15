@@ -20,6 +20,7 @@ from sage_tools.mixins.models.abstract import PictureOperationAbstract
 from sage_tools.mixins.models.base import TimeStampMixin, TitleSlugDescriptionMixin
 from sage_blog.repository.managers import PostDataAccessLayer
 
+
 class Post(
     TitleSlugDescriptionMixin,
     PictureOperationAbstract,
@@ -96,14 +97,6 @@ class Post(
     )
 
     objects = PostDataAccessLayer()
-
-    def get_absolute_url(self):
-        """
-        Returns the absolute URL for the blog post detail page.
-
-        This method is used to provide a direct link to the blog post's detail view.
-        """
-        return reverse("pages:blog-post-detail", kwargs={"post_slug": self.slug})
 
     class Meta:
         """

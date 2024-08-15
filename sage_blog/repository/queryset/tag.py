@@ -11,18 +11,10 @@ class TagQuerySet(QuerySet):
     handling and analyzing tags in relation to associated posts.
     """
 
-    def filter_recent_tags(self, days_ago=30, limit=None) -> QuerySet:
+    def filter_recent_tags(self, days_ago=30, limit=None, obj=None) -> QuerySet:
         """
         Filter tags that have been used in posts within the specified number of days.
-        If 'days_ago' is set to zero, the method returns tags sorted by the 'created_at'
-        date of their associated posts. An optional 'limit' parameter can restrict the
-        number of tags returned.
-
-        Args:
-            days_ago (int): The number of days from the current date to look back.
-                            If zero, tags are sorted by 'created_at' date.
-            limit (int, optional): The maximum number of tags to return. If None, no
-                                    limit is applied.
+        If 'obj' is provided, it excludes that object from the results.
         """
         if not isinstance(days_ago, int) or days_ago < 0:
             raise ValueError("`days_ago` must be a non-negative integer")
@@ -37,6 +29,9 @@ class TagQuerySet(QuerySet):
         else:
             recent_date = timezone.now() - timedelta(days=days_ago)
             qs = self.filter(posts__created_at__gte=recent_date).distinct()
+
+        if obj:
+            qs = qs.exclude(Q(pk=obj.pk))
 
         if limit is not None:
             qs = qs[:limit]

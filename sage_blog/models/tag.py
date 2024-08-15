@@ -7,10 +7,22 @@ from django.utils.translation import gettext_lazy as _
 from sage_tools.mixins.models.base import TimeStampMixin, TitleSlugMixin
 from sage_blog.repository.managers import TagDataAccessLayer
 
+
 class PostTag(TitleSlugMixin, TimeStampMixin):
     """
     Post Tag Model
     """
+
+    is_active = models.BooleanField(
+        _("Is Active"),
+        default=True,
+        help_text=_(
+            "Indicate whether this tag is currently active and should be displayed "
+            "publicly. Deactivate to hide the tag from public view without deleting "
+            "it."
+        ),
+        db_comment="Indicates if the tag is active (true) or hidden from public view (false).",
+    )
 
     objects = TagDataAccessLayer()
 
@@ -24,15 +36,6 @@ class PostTag(TitleSlugMixin, TimeStampMixin):
         default_manager_name = "objects"
         db_table = "sage_post_tag"
         db_table_comment = "Table for preserving blog post tags"
-
-    def get_absolute_url(self):
-        """
-        Get Absolute URL
-        """
-        base_url = reverse("pages:blog-post-list")
-        query_params = urlencode({"tag": self.slug})
-        full_url = f"{base_url}?{query_params}"
-        return full_url
 
     def __str__(self):
         return str(self.title)
