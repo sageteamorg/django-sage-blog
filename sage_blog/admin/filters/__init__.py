@@ -1,1 +1,1 @@
-from .post import PostsStatusFilter
+from .category import PostsStatusFilter

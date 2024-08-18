@@ -17,11 +17,11 @@ class PostDataAccessLayer(Manager):
         """
         return PostQuerySet(self.model, using=self._db)
 
-    def filter_actives(self, is_active=True):
+    def filter_actives(self, is_published=True):
         """
         Returns a queryset of posts filtered by their active status.
         """
-        return self.get_queryset().filter_actives(is_active)
+        return self.get_queryset().filter_actives(is_published)
 
     def filter_recent_posts(self, num_posts=5):
         """

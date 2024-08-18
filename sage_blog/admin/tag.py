@@ -15,7 +15,7 @@ class PostTagAdmin(admin.ModelAdmin):
     """
 
     admin_priority = 3
-    list_display = ("title", "slug", "is_active", "modified_at")
+    list_display = ("title", "slug", "is_published", "modified_at")
     list_filter = ("created_at", "modified_at")
     search_fields = ("title",)
     date_hierarchy = "created_at"
@@ -23,7 +23,7 @@ class PostTagAdmin(admin.ModelAdmin):
     ordering = ("title",)
 
     fieldsets = (
-        (None, {"fields": ("title", "slug", "is_active")}),
+        (None, {"fields": ("title", "slug", "is_published")}),
         (_("Timestamps"), {"fields": ("created_at", "modified_at")}),
     )
     readonly_fields = ("created_at", "modified_at", "slug")

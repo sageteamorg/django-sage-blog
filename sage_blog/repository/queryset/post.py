@@ -30,11 +30,11 @@ class PostQuerySet(QuerySet):
     criteria and annotating posts with additional computed information.
     """
 
-    def filter_actives(self, is_active=True):
+    def filter_actives(self, is_published=True):
         """
         Returns a queryset of posts filtered by their active status.
         """
-        return self.filter(is_active=is_active)
+        return self.filter(is_published=is_published)
 
     def filter_recent_posts(self, num_posts=5, obj=None):
         """

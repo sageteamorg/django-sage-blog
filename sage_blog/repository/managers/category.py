@@ -28,17 +28,17 @@ class CategoryDataAccessLayer(Manager):
         """
         return self.get_queryset().annotate_total_posts()
 
-    def get_actives(self, is_active=True):
+    def filter_published(self, is_published=True):
         """
         Filters categories based on their active status.
         """
-        return self.get_queryset().get_actives(is_active)
+        return self.get_queryset().filter_published(is_published)
 
-    def filter_active_posts(self, is_active=True):
+    def filter_published_posts(self, is_published=True):
         """
         Prefetches related posts for each category in the queryset.
         """
-        return self.get_queryset().filter_active_posts(is_active)
+        return self.get_queryset().filter_published_posts(is_published)
 
     def join_posts(self):
         """
@@ -46,11 +46,11 @@ class CategoryDataAccessLayer(Manager):
         """
         return self.get_queryset().join_posts()
 
-    def exclude_inactive_posts(self) -> "QuerySet":
+    def exclude_unpublished_posts(self) -> "QuerySet":
         """
         Excludes categories that are only associated with inactive or discontinued posts.
         """
-        return self.get_queryset().exclude_inactive_posts()
+        return self.get_queryset().exclude_unpublished_posts()
 
     def filter_recent_categories(self, num_categories=5, obj=None):
         """
