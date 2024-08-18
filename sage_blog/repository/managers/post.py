@@ -26,6 +26,7 @@ class PostDataAccessLayer(Manager):
     def filter_recent_posts(self, num_posts=5):
         """
         Retrieves a specified number of the most recently created posts.
+        If 'obj' is provided, it excludes that object from the results.
         """
         return self.get_queryset().filter_recent_posts(num_posts=num_posts)
 

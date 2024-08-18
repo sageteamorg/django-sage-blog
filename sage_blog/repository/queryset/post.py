@@ -36,11 +36,17 @@ class PostQuerySet(QuerySet):
         """
         return self.filter(is_active=is_active)
 
-    def filter_recent_posts(self, num_posts=5):
+    def filter_recent_posts(self, num_posts=5, obj=None):
         """
         Retrieves a specified number of the most recently created posts.
+        If 'obj' is provided, it excludes that object from the results.
         """
-        return self.order_by("-created_at")[:num_posts]
+        queryset = self.order_by("-created_at")
+        
+        if obj:
+            queryset = queryset.exclude(Q(pk=obj.pk))
+
+        return queryset[:num_posts]
 
     def filter_by_category(self, category_slug):
         """
