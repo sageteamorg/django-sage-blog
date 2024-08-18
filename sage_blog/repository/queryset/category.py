@@ -15,38 +15,38 @@ class CategoryQuerySet(QuerySet):
         an additional attribute 'total_posts' for each category object, which
         indicates the count of posts in that category.
         """
-        active_posts = self.filter_active_posts()
-        qs = active_posts.annotate(total_posts=Count("posts"))
+        published_posts = self.filter_published_posts()
+        qs = published_posts.annotate(total_posts=Count("posts"))
         return qs
 
-    def get_actives(self, is_active: bool = True):
+    def filter_published(self, is_published: bool = True):
         """
-        Filters categories based on their active status.
+        Filters categories based on their published status.
         """
-        qs = self.filter(is_active=is_active)
+        qs = self.filter(is_published=is_published)
         return qs
 
-    def filter_active_posts(self, is_active: bool=True):
+    def filter_published_posts(self, is_published: bool=True):
         """
         Prefetches related posts for each category in the queryset.
         """
-        active_posts_condition = Q(posts__is_active=is_active)
-        actives = self.get_actives()
-        qs = actives.filter(active_posts_condition)
+        published_posts_condition = Q(posts__is_published=is_published)
+        published = self.filter_published()
+        qs = published.filter(published_posts_condition)
         return qs
 
     def join_posts(self):
         """
-        Excludes categories that are only associated with inactive or discontinued posts.
+        Excludes categories that are only associated with inpublished or discontinued posts.
         """
         qs = self.prefetch_related("posts")
         return qs
 
-    def exclude_inactive_posts(self) -> QuerySet:
+    def exclude_unpublished_posts(self) -> QuerySet:
         """
-        Excludes categories that are only associated with inactive or discontinued posts.
+        Excludes categories that are only associated with inpublished or discontinued posts.
         """
-        qs = self.filter(posts__is_active=True)
+        qs = self.filter(posts__is_published=True)
         return qs
 
     def filter_recent_categories(self, num_categories=5, obj=None):

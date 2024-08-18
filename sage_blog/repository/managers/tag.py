@@ -93,11 +93,11 @@ class TagDataAccessLayer(Manager):
         """
         return self.get_queryset().filter_by_posts_category(category_name)
 
-    def exclude_inactive_posts(self) -> QuerySet:
+    def exclude_unpublished_posts(self) -> QuerySet:
         """
         Excludes tags that are only associated with inactive or discontinued posts.
         """
-        return self.get_queryset().exclude_inactive_posts()
+        return self.get_queryset().exclude_unpublished_posts()
 
     def sort_by_popularity(self) -> QuerySet:
         """

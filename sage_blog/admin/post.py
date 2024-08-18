@@ -26,14 +26,14 @@ class PostAdmin(admin.ModelAdmin, AdminImageMixin):
     # Display settings
     list_display = (
         "title",
-        "is_active",
+        "is_published",
         "category",
         "get_tags",
         "get_summary",
         "published_at",
         "modified_at",
     )
-    list_filter = ("is_active", "category", "published_at", "modified_at")
+    list_filter = ("is_published", "category", "published_at", "modified_at")
     search_fields = (
         "title",
         "slug",
@@ -49,7 +49,7 @@ class PostAdmin(admin.ModelAdmin, AdminImageMixin):
     ordering = ("-published_at",)
     readonly_fields = ("created_at", "modified_at", "slug")
     fieldsets = (
-        ("Basic Information", {"fields": ("title", "slug", "category", "is_active")}),
+        ("Basic Information", {"fields": ("title", "slug", "category", "is_published")}),
         (
             "Content Details",
             {

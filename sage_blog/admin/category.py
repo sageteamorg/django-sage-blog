@@ -18,8 +18,8 @@ class PostCategoryAdmin(admin.ModelAdmin):
 
     # Display settings
     admin_priority = 1
-    list_display = ("title", "slug", "is_active", "modified_at")
-    list_filter = (PostsStatusFilter, "is_active")
+    list_display = ("title", "slug", "is_published", "published_posts_count", "modified_at")
+    list_filter = (PostsStatusFilter, "is_published")
     search_fields = ("title",)
     date_hierarchy = "created_at"
     ordering = ("title",)
@@ -27,7 +27,7 @@ class PostCategoryAdmin(admin.ModelAdmin):
 
     # Form layout customization
     fieldsets = (
-        (None, {"fields": ("title", "slug", "is_active")}),
+        (None, {"fields": ("title", "slug", "is_published")}),
         (_("Timestamps"), {"fields": ("created_at", "modified_at")}),
     )
     readonly_fields = ("created_at", "modified_at", "slug")
@@ -35,5 +35,9 @@ class PostCategoryAdmin(admin.ModelAdmin):
     def get_queryset(self, request):
         queryset = super().get_queryset(request)
         queryset = queryset.join_posts()
-        # queryset = queryset.prefetch_related("posts")
         return queryset
+
+    @admin.display(description=_("Published Posts"))
+    def published_posts_count(self, obj):
+        # Annotate the count of published posts directly when accessed
+        return obj.posts.filter(is_published=True).count()

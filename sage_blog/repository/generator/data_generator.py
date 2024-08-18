@@ -64,7 +64,7 @@ class DataGeneratorLayer(BaseDataGenerator):
             PostTag(
                 title=word,
                 slug=slugify(word),
-                is_active=self.get_random_boolean()
+                is_published=self.get_random_boolean()
                 )
             for i in tqdm(range(total), disable=disable_progress_bar, colour="#b8835c")
             if (word := self.get_random_words(3))
@@ -102,7 +102,7 @@ class DataGeneratorLayer(BaseDataGenerator):
             PostCategory(
                 title=word,
                 slug=slugify(word),
-                is_active=self.get_random_boolean()
+                is_published=self.get_random_boolean()
                 )
             for i in tqdm(range(total), disable=disable_progress_bar, colour="#b8835c")
             if (word := self.get_random_words(3))
@@ -159,7 +159,7 @@ class DataGeneratorLayer(BaseDataGenerator):
                 summary=self.text.sentence()[:125],
                 description=self.text.text(5),
                 category=self.get_random_object(post_categories),
-                is_active=self.get_random_boolean(),
+                is_published=self.get_random_boolean(),
                 alternate_text=self.get_random_sentence()[:109],
                 picture=SimpleUploadedFile(
                     name=img_name,

@@ -13,15 +13,14 @@ class PostCategory(TitleSlugMixin, TimeStampMixin):
     Post Category
     """
 
-    is_active = models.BooleanField(
-        _("Is Active"),
+    is_published = models.BooleanField(
+        _("Is Published"),
         default=True,
         help_text=_(
-            "Indicate whether this category is currently active and should be displayed "
-            "publicly. Deactivate to hide the category from public view without deleting "
-            "it."
+            "Indicate whether this category is currently published and should be displayed "
+            "to all users. If unpublished, only staff users can view the category."
         ),
-        db_comment="Indicates if the category is active (true) or hidden from public view (false).",
+        db_comment="Indicates if the category is published (true) or hidden from non-staff users (false).",
     )
 
     objects = CategoryDataAccessLayer()

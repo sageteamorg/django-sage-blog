@@ -122,11 +122,11 @@ class TagQuerySet(QuerySet):
         qs = self.filter(posts__category__name=category_name).distinct()
         return qs
 
-    def exclude_inactive_posts(self) -> QuerySet:
+    def exclude_unpublished_posts(self) -> QuerySet:
         """
         Excludes tags that are only associated with inactive or discontinued posts.
         """
-        qs = self.filter(posts__is_active=True)
+        qs = self.filter(posts__is_published=True)
         return qs
 
     def sort_by_popularity(self) -> QuerySet:
