@@ -1,4 +1,3 @@
-from django.conf import settings
 from django.db.models import QuerySet
 from django.views.generic.base import ContextMixin
 

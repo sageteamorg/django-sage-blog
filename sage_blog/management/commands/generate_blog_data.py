@@ -4,7 +4,6 @@ from typing import TextIO
 
 from colorama import init
 from django.core.management.base import BaseCommand
-from django.utils.text import slugify
 
 from sage_blog.repository.generator import DataGeneratorLayer
 
