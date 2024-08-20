@@ -144,10 +144,22 @@ class PostQuerySet(QuerySet):
         This method is optimized for finding complete words or phrases, not partial
         substrings.
         """
+        database_engine = settings.DATABASES["default"]["ENGINE"]
         if search_query:
-            vector = SearchVector("title", "description")
-            query = SearchQuery(search_query)
-            return self.annotate(search=vector).filter(search=query)
+            if "postgresql" in database_engine:
+                vector = SearchVector("title", "description")
+                query = SearchQuery(search_query)
+                return self.annotate(search=vector).filter(search=query)
+
+            elif "mysql" in database_engine or "mariadb" in database_engine:
+                return self.filter(
+                    Q(title__icontains=search_query) | Q(description__icontains=search_query)
+                )
+
+            elif "sqlite" in database_engine:
+                return self.filter(
+                    Q(title__icontains=search_query) | Q(description__icontains=search_query)
+                )
         return self
 
     def substring_search(self, search_query):
@@ -168,17 +180,33 @@ class PostQuerySet(QuerySet):
         Performs a search using trigram similarity on 'title' and 'description' fields
         of the posts.
         This method supports partial word matches and is more linguistically aware than
-        a simple substring search, but it requires PostgreSQL with pg_trgm extension.
+        a simple substring search, but it requires pg_trgm extension for Postgresql.
         """
-        if search_query and "postgresql" in settings.DATABASES["default"]["ENGINE"]:
+        database_engine = settings.DATABASES["default"]["ENGINE"]
+
+        if "postgresql" in database_engine:
             return (
                 self.annotate(
-                    similarity=TrigramSimilarity("title", search_query)
-                    + TrigramSimilarity("description", search_query)
+                    similarity=TrigramSimilarity("title", search_query) +
+                                TrigramSimilarity("description", search_query)
                 )
                 .filter(similarity__gt=0.1)
                 .order_by("-similarity")
             )
+
+        elif "mysql" in database_engine or "mariadb" in database_engine:
+            # MariaDB does not support trigram similarity directly
+            # Mysql does not support trigram similarity directly
+            return self.filter(
+                Q(title__icontains=search_query) | Q(description__icontains=search_query)
+            )
+
+        elif "sqlite" in database_engine:
+            # SQLite does not support trigram similarity directly
+            return self.filter(
+                Q(title__icontains=search_query) | Q(description__icontains=search_query)
+            )
+
         return self.none()
 
     def heavy_search(self, search_query):
@@ -202,10 +230,9 @@ class PostQuerySet(QuerySet):
             return substring_qs
 
         # Step 3: Trigram similarity search (if supported by the database)
-        if "postgresql" in settings.DATABASES["default"]["ENGINE"]:
-            trigram_qs = self.trigram_similarity_search(search_query)
-            if trigram_qs.exists():
-                return trigram_qs
+        trigram_qs = self.trigram_similarity_search(search_query)
+        if trigram_qs.exists():
+            return trigram_qs
 
         return self.none()
 
