@@ -1,7 +1,4 @@
-from urllib.parse import urlencode
-
 from django.db import models
-from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 
 from sage_tools.mixins.models.base import TimeStampMixin, TitleSlugMixin
@@ -17,10 +14,14 @@ class PostTag(TitleSlugMixin, TimeStampMixin):
         _("Is Published"),
         default=True,
         help_text=_(
-            "Indicate whether this tag is currently published and should be displayed "
-            "to all users. If unpublished, only staff users can view the tag."
+            "Indicate whether this tag is currently published and should be "
+            "displayed to all users. If unpublished, only staff users can view "
+            "the tag."
         ),
-        db_comment="Indicates if the tag is published (true) or hidden from non-staff users (false).",
+        db_comment=(
+            "Indicates if the tag is published (true) or hidden from non-staff "
+            "users (false)."
+        ),
     )
 
     objects = TagDataAccessLayer()

@@ -53,6 +53,7 @@ types-setuptools = "^70.2.0.20240704"
 codecov = "^2.1.13"
 ruff = "^0.5.7"
 mypy = "^1.11.1"
+pylint-django = "^2.5.5"
 
 [tool.pytest.ini_options]
 addopts = "--cov=. --cov-report=term-missing --cov-report=html"
@@ -194,6 +195,7 @@ disable = [
 max-line-length = 88
 ignore = [
     "migrations/*",
+    "*/migrations/*",
     "venv/*",
     "build/*",
     "dist/*",
@@ -207,7 +209,8 @@ load-plugins = [
     "pylint_django",
     "pylint.extensions.docparams",
 ]
-django-settings-module = "myproject.settings"
+# you must add yourproject.settings
+django-settings-module = "kernel.settings"
 good-names = [
     "qs",  # QuerySet abbreviation
     "pk",  # Primary key abbreviation

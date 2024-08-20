@@ -22,7 +22,8 @@ class PostFaq(TimeStampMixin):
         _("Question"),
         max_length=150,
         help_text=_(
-            "Enter the FAQ question. Keep it clear and concise to aid easy understanding."
+            "Enter the FAQ question. Keep it clear and concise to aid easy "
+            "understanding."
         ),
         db_comment="The question of the FAQ. Limited to 80 characters.",
     )
@@ -30,7 +31,8 @@ class PostFaq(TimeStampMixin):
     answer = models.TextField(
         _("Answer"),
         help_text=_(
-            "Provide a detailed answer to the FAQ question. Aim for clarity and completeness."
+            "Provide a detailed answer to the FAQ question. Aim for clarity and "
+            "completeness."
         ),
         db_comment="Detailed answer to the FAQ question. Limited to 180 characters.",
     )
@@ -50,7 +52,10 @@ class PostFaq(TimeStampMixin):
         verbose_name = _("FAQ")
         verbose_name_plural = _("FAQ")
         db_table = "sage_post_faqs"
-        db_table_comment = "Table storing frequently asked questions and their answers for user reference."
+        db_table_comment = (
+            "Table storing frequently asked questions and their answers "
+            "for user reference."
+        )
 
     def __str__(self):
         """Cast to String"""

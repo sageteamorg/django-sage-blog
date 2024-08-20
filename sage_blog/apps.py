@@ -8,4 +8,5 @@ class SageBlogConfig(AppConfig):
     verbose_name = _("Blog")
 
     def ready(self) -> None:
+        # noqa: F401, pylint: disable=import-outside-toplevel, unused-import
         import sage_blog.settings.check

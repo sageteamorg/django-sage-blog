@@ -1,4 +1,4 @@
-from django.db.models import Count, Manager
+from django.db.models import Manager
 
 from ..queryset.post import PostQuerySet
 

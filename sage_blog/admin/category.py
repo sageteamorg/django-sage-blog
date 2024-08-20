@@ -1,5 +1,4 @@
 from django.contrib import admin
-from django.db.models import Count, Q, QuerySet
 from django.utils.translation import gettext_lazy as _
 
 from sage_blog.models import PostCategory
@@ -18,7 +17,13 @@ class PostCategoryAdmin(admin.ModelAdmin):
 
     # Display settings
     admin_priority = 1
-    list_display = ("title", "slug", "is_published", "published_posts_count", "modified_at")
+    list_display = (
+        "title", 
+        "slug", 
+        "is_published", 
+        "published_posts_count", 
+        "modified_at"
+    )
     list_filter = (PostsStatusFilter, "is_published")
     search_fields = ("title",)
     date_hierarchy = "created_at"

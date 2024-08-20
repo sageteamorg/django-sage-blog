@@ -1,10 +1,10 @@
 from django.conf import settings
-from django.core.checks import Error, Warning, register
+from django.core.checks import Error, Warning as CheckWarning, register
 from django.db import connection, OperationalError
 
 
 @register()
-def check_postgres_extensions(app_configs, **kwargs):
+def check_postgres_extensions(app_configs, **_kwargs):
     errors = []
     warnings = []
 
@@ -19,23 +19,28 @@ def check_postgres_extensions(app_configs, **kwargs):
                     errors.append(
                         Error(
                             "pg_trgm extension is not installed",
-                            hint="Run `CREATE EXTENSION pg_trgm;` in your PostgreSQL database.",
+                            hint=("Run `CREATE EXTENSION pg_trgm;` in "
+                            "your PSQL database."
+                            ),
                             id="postgres.E001",
                         )
                     )
-        except OperationalError as e:
+        except OperationalError as error:
             errors.append(
                 Error(
-                    f"Error checking pg_trgm extension: {e}",
+                    f"Error checking pg_trgm extension: {error}",
                     hint="Ensure your database is running and accessible.",
                     id="postgres.E002",
                 )
             )
     else:
         warnings.append(
-            Warning(
+            CheckWarning(
                 "Database engine is not PostgreSQL.",
-                hint="PostgreSQL improves search in `django-sage-blog`, but it's optional.",
+                hint=(
+                    "PostgreSQL improves search in `django-sage-blog`, "
+                    "but it's optional."
+                ),
                 id="postgres.W001",
             )
         )

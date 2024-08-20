@@ -42,13 +42,15 @@ class CategoryDataAccessLayer(Manager):
 
     def join_posts(self):
         """
-        Excludes categories that are only associated with inactive or discontinued posts.
+        Excludes categories that are only associated with
+        inactive or discontinued posts.
         """
         return self.get_queryset().join_posts()
 
     def exclude_unpublished_posts(self) -> "QuerySet":
         """
-        Excludes categories that are only associated with inactive or discontinued posts.
+        Excludes categories that are only associated with
+        inactive or discontinued posts.
         """
         return self.get_queryset().exclude_unpublished_posts()
 
