@@ -19,7 +19,7 @@ class SageBlogContextMixin(ContextMixin):
             self.recent_posts_limit
         )
         context[self.tags_context_name] = (
-            PostTag.dal.exclude_inactive_posts()
+            PostTag.dal.exclude_unpublished_posts()
             .annotate_total_posts()
             .filter_trend_tags(
                 days_ago=self.tags_days_ago,

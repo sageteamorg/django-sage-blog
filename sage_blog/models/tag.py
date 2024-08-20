@@ -7,10 +7,21 @@ from django.utils.translation import gettext_lazy as _
 from sage_tools.mixins.models.base import TimeStampMixin, TitleSlugMixin
 from sage_blog.repository.managers import TagDataAccessLayer
 
+
 class PostTag(TitleSlugMixin, TimeStampMixin):
     """
     Post Tag Model
     """
+
+    is_published = models.BooleanField(
+        _("Is Published"),
+        default=True,
+        help_text=_(
+            "Indicate whether this tag is currently published and should be displayed "
+            "to all users. If unpublished, only staff users can view the tag."
+        ),
+        db_comment="Indicates if the tag is published (true) or hidden from non-staff users (false).",
+    )
 
     objects = TagDataAccessLayer()
 

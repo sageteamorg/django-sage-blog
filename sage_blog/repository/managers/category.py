@@ -27,3 +27,34 @@ class CategoryDataAccessLayer(Manager):
         indicates the count of posts in that category.
         """
         return self.get_queryset().annotate_total_posts()
+
+    def filter_published(self, is_published=True):
+        """
+        Filters categories based on their active status.
+        """
+        return self.get_queryset().filter_published(is_published)
+
+    def filter_published_posts(self, is_published=True):
+        """
+        Prefetches related posts for each category in the queryset.
+        """
+        return self.get_queryset().filter_published_posts(is_published)
+
+    def join_posts(self):
+        """
+        Excludes categories that are only associated with inactive or discontinued posts.
+        """
+        return self.get_queryset().join_posts()
+
+    def exclude_unpublished_posts(self) -> "QuerySet":
+        """
+        Excludes categories that are only associated with inactive or discontinued posts.
+        """
+        return self.get_queryset().exclude_unpublished_posts()
+
+    def filter_recent_categories(self, num_categories=5, obj=None):
+        """
+        Retrieves a specified number of the most recently created categories.
+        If 'obj' is provided, it excludes that object from the results.
+        """
+        return self.get_queryset().filter_recent_categories(num_categories, obj)

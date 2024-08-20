@@ -20,6 +20,7 @@ from sage_tools.mixins.models.abstract import PictureOperationAbstract
 from sage_tools.mixins.models.base import TimeStampMixin, TitleSlugDescriptionMixin
 from sage_blog.repository.managers import PostDataAccessLayer
 
+
 class Post(
     TitleSlugDescriptionMixin,
     PictureOperationAbstract,
@@ -31,15 +32,14 @@ class Post(
     Represents a blog post in the system.
     """
 
-    is_active = models.BooleanField(
-        _("Is Active"),
+    is_published = models.BooleanField(
+        _("Is Published"),
         default=True,
         help_text=_(
-            "Indicate whether this post is currently active and should be displayed "
-            "publicly. Deactivate to hide the post from public view without deleting "
-            "it."
+            "Indicate whether this post is currently published and should be displayed "
+            "to all users. If unpublished, only staff users can view the post."
         ),
-        db_comment="Indicates if the post is active (true) or hidden from public view (false).",
+        db_comment="Indicates if the post is published (true) or hidden from non-staff users (false).",
     )
 
     summary = models.CharField(
