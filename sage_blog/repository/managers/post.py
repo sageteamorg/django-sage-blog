@@ -23,12 +23,12 @@ class PostDataAccessLayer(Manager):
         """
         return self.get_queryset().filter_actives(is_published)
 
-    def filter_recent_posts(self, num_posts=5):
+    def filter_recent_posts(self, num_posts=5, obj=None):
         """
         Retrieves a specified number of the most recently created posts.
         If 'obj' is provided, it excludes that object from the results.
         """
-        return self.get_queryset().filter_recent_posts(num_posts=num_posts)
+        return self.get_queryset().filter_recent_posts(num_posts=num_posts, obj=obj)
 
     def filter_by_category(self, category_slug):
         """
@@ -114,3 +114,16 @@ class PostDataAccessLayer(Manager):
 
     def join_tags(self):
         return self.get_queryset().join_tags()
+
+    def annotate_next_and_prev(self):
+        """
+        Annotates each post in the queryset with slugs of the next and previous posts
+        in the same category.
+
+        This method uses subqueries to determine the 'slug' of the
+        next and previous posts based on their primary key (pk)
+        within the same category. The result is the addition
+        of two new fields to each post object in the queryset:
+        `next_post_slug` and `prev_post_slug`.
+        """
+        return self.get_queryset().annotate_next_and_prev()

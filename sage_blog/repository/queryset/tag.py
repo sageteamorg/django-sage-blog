@@ -112,14 +112,14 @@ class TagQuerySet(QuerySet):
         """
         Performs a case-insensitive search for tags based on their name.
         """
-        qs = self.filter(name__icontains=search_term)
+        qs = self.filter(title__icontains=search_term)
         return qs
 
-    def filter_by_posts_category(self, category_name) -> QuerySet:
+    def filter_by_posts_category(self, category_title) -> QuerySet:
         """
         Filters tags based on the category of associated posts.
         """
-        qs = self.filter(posts__category__name=category_name).distinct()
+        qs = self.filter(posts__category__title=category_title).distinct()
         return qs
 
     def exclude_unpublished_posts(self) -> QuerySet:
