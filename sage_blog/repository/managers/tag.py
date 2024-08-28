@@ -87,11 +87,11 @@ class TagDataAccessLayer(Manager):
         """
         return self.get_queryset().search(search_term)
 
-    def filter_by_posts_category(self, category_name) -> QuerySet:
+    def filter_by_posts_category(self, category_title) -> QuerySet:
         """
         Filters tags based on the category of associated posts.
         """
-        return self.get_queryset().filter_by_posts_category(category_name)
+        return self.get_queryset().filter_by_posts_category(category_title)
 
     def exclude_unpublished_posts(self) -> QuerySet:
         """

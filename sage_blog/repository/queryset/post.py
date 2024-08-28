@@ -42,7 +42,7 @@ class PostQuerySet(QuerySet):
         If 'obj' is provided, it excludes that object from the results.
         """
         queryset = self.order_by("-created_at")
-        
+
         if obj:
             queryset = queryset.exclude(Q(pk=obj.pk))
 
@@ -110,14 +110,11 @@ class PostQuerySet(QuerySet):
         Annotates each post in the queryset with slugs of the next and previous posts
         in the same category.
 
-        This method uses subqueries to determine the 'slug' of the next and previous posts
-        based on their primary key (pk) within the same category. The result is the addition
-        of two new fields to each post object in the queryset: `next_post_slug` and
-        `prev_post_slug`.
-
-        Usage:
-            # Example usage:
-            >>> post.dal.annotate_next_and_prev()
+        This method uses subqueries to determine the 'slug' of the
+        next and previous posts based on their primary key (pk)
+        within the same category. The result is the addition
+        of two new fields to each post object in the queryset:
+        `next_post_slug` and `prev_post_slug`.
         """
         next_post_slug = (
             self.filter(category=OuterRef("category"), pk__gt=OuterRef("pk"))
@@ -170,8 +167,8 @@ class PostQuerySet(QuerySet):
         """
         if search_query:
             return self.filter(
-                Q(title__icontains=search_query)
-                | Q(description__icontains=search_query)
+                Q(title__icontains=search_query) |
+                Q(description__icontains=search_query)
             )
         return self
 

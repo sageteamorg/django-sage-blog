@@ -53,12 +53,15 @@ types-setuptools = "^70.2.0.20240704"
 codecov = "^2.1.13"
 ruff = "^0.5.7"
 mypy = "^1.11.1"
+pylint-django = "^2.5.5"
+factory-boy = "^3.3.1"
+pytest-django = "^4.8.0"
 
 [tool.pytest.ini_options]
 addopts = "--cov=. --cov-report=term-missing --cov-report=html"
 DJANGO_SETTINGS_MODULE = "kernel.settings"
 python_files = ["tests.py", "test_*.py"]
-testpaths = ["tests"]
+testpaths = ["tests", "*/tests"]
 norecursedirs = [
     "migrations",
     "static",
@@ -194,6 +197,7 @@ disable = [
 max-line-length = 88
 ignore = [
     "migrations/*",
+    "*/migrations/*",
     "venv/*",
     "build/*",
     "dist/*",
@@ -207,7 +211,8 @@ load-plugins = [
     "pylint_django",
     "pylint.extensions.docparams",
 ]
-django-settings-module = "myproject.settings"
+# you must add yourproject.settings
+django-settings-module = "kernel.settings"
 good-names = [
     "qs",  # QuerySet abbreviation
     "pk",  # Primary key abbreviation

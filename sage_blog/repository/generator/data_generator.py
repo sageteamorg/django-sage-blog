@@ -1,5 +1,4 @@
 """Data Generator Layer"""
-import os
 import logging
 import functools
 
@@ -11,10 +10,10 @@ from sage_tools.repository.generator import BaseDataGenerator
 
 try:
     from tqdm import tqdm
-except ImportError:
-    raise ImportError(  # noqa: B904
-            "Install `tqdm` package. Run `pip install tqdm`."
-        )
+except ImportError as exc:
+    raise ImportError(
+        "Install `tqdm` package. Run `pip install tqdm`."
+    ) from exc
 
 from sage_blog.models import (
     PostCategory,
@@ -30,14 +29,14 @@ User = get_user_model()
 class DataGeneratorLayer(BaseDataGenerator):
     """Data Generator Layer
 
-    DGL is a layer to use anywhere in source code to generate data for blog app.  # noqa E501
+    DGL is a layer to use anywhere in source code to generate data for blog app.
     Use Cases:
     - Test Cases
     - manage.py blog_data_generator
     """
 
     def __init__(self, *args, **kwargs):
-        super(DataGeneratorLayer, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
 
     def create_tags(self,
                     total,
@@ -50,11 +49,12 @@ class DataGeneratorLayer(BaseDataGenerator):
             total : `int`
                 total objects to generate data
             random_activation : `bool`
-                when it set to true data may have not be activate to show on website.  # noqa E501
+                when it set to true data may have not be activate to show on website.
             batch_size : `int`
-                this param uses to set how many data prepare bulk create in one query.  # noqa E501
+                this param uses to set how many data prepare bulk create in one query.
             disable_progress_bar : `bool`
-                this param hidden `tqdm` package and skip calculating progress feature as well.  # noqa E501
+                this param hidden `tqdm` package and skip calculating
+                progress feature as well.
 
             Returns
             -------
@@ -70,7 +70,7 @@ class DataGeneratorLayer(BaseDataGenerator):
             if (word := self.get_random_words(3))
         ]
 
-        logger.debug(f'{total} Tag Objects created successfully.')
+        logger.debug('%d Tag Objects created successfully.', total)
         tags = PostTag.objects.bulk_create(objs, batch_size=batch_size)
         logger.debug('All Tags saved into database.')
 
@@ -81,18 +81,19 @@ class DataGeneratorLayer(BaseDataGenerator):
                                random_activation=True,
                                batch_size=300,
                                disable_progress_bar=False):
-        """Create tag fake data
+        """Create category fake data
 
             Parameters
             ----------
             total : `int`
                 total objects to generate data
             random_activation : `bool`
-                when it set to true data may have not be activate to show on website.  # noqa E501
+                when it set to true data may have not be activate to show on website.
             batch_size : `int`
-                this param uses to set how many data prepare bulk create in one query.  # noqa E501
+                this param uses to set how many data prepare bulk create in one query.
             disable_progress_bar : `bool`
-                this param hidden `tqdm` package and skip calculating progress feature as well.  # noqa E501
+                this param hidden `tqdm` package and skip
+                calculating progress feature as well.
 
             Returns
             -------
@@ -108,7 +109,7 @@ class DataGeneratorLayer(BaseDataGenerator):
             if (word := self.get_random_words(3))
         ]
 
-        logger.debug(f'{total} post categories Objects created successfully.')
+        logger.debug('%d post categories Objects created successfully.', total)
         PostCategory.objects.bulk_create(objs, batch_size=batch_size)
         logger.debug('post categories saved into database.')
 
@@ -118,22 +119,24 @@ class DataGeneratorLayer(BaseDataGenerator):
     def create_posts(self,
                      total,
                      tag_per_range=3,
-                     random_activation=True,
+                     random_activation=True,  # noqa: W0613
                      batch_size=300,
-                     tag_count=6,
                      disable_progress_bar=False):
-        """Create tag fake data
+        """Create post fake data
 
             Parameters
             ----------
             total : `int`
                 total objects to generate data
             random_activation : `bool`
-                when it set to true data may have not be activate to show on website.  # noqa E501
+                when it set to true data may have not be activate
+                to show on website.
             batch_size : `int`
-                this param uses to set how many data prepare bulk create in one query.  # noqa E501
+                this param uses to set how many data prepare bulk
+                create in one query.
             disable_progress_bar : `bool`
-                this param hidden `tqdm` package and skip calculating progress feature as well. # noqa E501
+                this param hidden `tqdm` package and skip calculating
+                progress feature as well.
 
             Returns
             -------
@@ -176,7 +179,7 @@ class DataGeneratorLayer(BaseDataGenerator):
                 if (word := self.get_random_words(3))
         ]
 
-        logger.debug(f'{total} post Objects created successfully.')
+        logger.debug('%d post Objects created successfully.', total)
         Post.objects.bulk_create(objs, batch_size=batch_size)
         logger.debug('posts saved into database.')
 
@@ -185,8 +188,16 @@ class DataGeneratorLayer(BaseDataGenerator):
         list(
             tqdm(
                 map(
-                    functools.partial(self.add_to_m2m, tags, 'tags',
-                                      tag_per_range), objs)))
+                    functools.partial(
+                        self.add_to_m2m,
+                        tags,
+                        'tags',
+                        tag_per_range
+                        ),
+                        objs
+                    )
+                )
+            )
         return posts
 
     def create_faqs(self,
@@ -202,7 +213,8 @@ class DataGeneratorLayer(BaseDataGenerator):
             batch_size : `int`
                 this param uses to set how many data prepare bulk create in one query.
             disable_progress_bar : `bool`
-                this param hidden `tqdm` package and skip calculating progress feature as well.
+                this param hidden `tqdm` package and skip calculating
+                progress feature as well.
 
             Returns
             -------
@@ -219,7 +231,7 @@ class DataGeneratorLayer(BaseDataGenerator):
             for i in tqdm(range(total), disable=disable_progress_bar, colour="#b8835c")
         ]
 
-        logger.debug(f'{total} FAQ Objects created successfully.')
+        logger.debug('%d FAQ Objects created successfully.', total)
         faqs = PostFaq.objects.bulk_create(objs, batch_size=batch_size)
         logger.debug('All FAQs saved into database.')
 

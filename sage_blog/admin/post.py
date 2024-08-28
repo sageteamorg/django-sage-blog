@@ -49,7 +49,12 @@ class PostAdmin(admin.ModelAdmin, AdminImageMixin):
     ordering = ("-published_at",)
     readonly_fields = ("created_at", "modified_at", "slug")
     fieldsets = (
-        ("Basic Information", {"fields": ("title", "slug", "category", "is_published")}),
+        ("Basic Information",
+        {"fields": (
+            "title", "slug", "category", "is_published"
+            )
+        }
+        ),
         (
             "Content Details",
             {
