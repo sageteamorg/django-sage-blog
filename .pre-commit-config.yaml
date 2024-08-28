@@ -28,9 +28,20 @@ repos:
       - id: black
         exclude: (migrations/|tests/|docs/|static/|media/).*
 
-  - repo: https://github.com/codespell-project/codespell
-    # Configuration for codespell is in .codespellrc
-    rev: v2.2.6
+  - repo: https://github.com/PyCQA/bandit
+    rev: 1.7.4
     hooks:
-    - id: codespell
-      exclude: locale|kickstarter-announcement.md|coreapi-0.1.1.js
+      - id: bandit
+        args: ["-c", "pyproject.toml", "-r", "."]
+        additional_dependencies: [ "bandit[toml]" ]
+
+  - repo: local
+    hooks:
+      - id: pytest
+        name: Pytest
+        entry: poetry run pytest -v
+        language: system
+        types: [python]
+        stages: [commit]
+        pass_filenames: false
+        always_run: true
