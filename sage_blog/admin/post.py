@@ -1,6 +1,5 @@
 from django.contrib import admin
 from django.utils.translation import gettext_lazy as _
-
 from sorl.thumbnail.admin import AdminImageMixin
 
 from sage_blog.models import Post, PostFaq
@@ -49,11 +48,9 @@ class PostAdmin(admin.ModelAdmin, AdminImageMixin):
     ordering = ("-published_at",)
     readonly_fields = ("created_at", "modified_at", "slug")
     fieldsets = (
-        ("Basic Information",
-        {"fields": (
-            "title", "slug", "category", "is_published"
-            )
-        }
+        (
+            "Basic Information",
+            {"fields": ("title", "slug", "category", "is_published")},
         ),
         (
             "Content Details",

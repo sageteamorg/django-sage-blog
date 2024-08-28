@@ -1,8 +1,8 @@
 from django.contrib import admin
 from django.utils.translation import gettext_lazy as _
 
-from sage_blog.models import PostCategory
 from sage_blog.admin.filters import PostsStatusFilter
+from sage_blog.models import PostCategory
 
 
 @admin.register(PostCategory)
@@ -18,11 +18,11 @@ class PostCategoryAdmin(admin.ModelAdmin):
     # Display settings
     admin_priority = 1
     list_display = (
-        "title", 
-        "slug", 
-        "is_published", 
-        "published_posts_count", 
-        "modified_at"
+        "title",
+        "slug",
+        "is_published",
+        "published_posts_count",
+        "modified_at",
     )
     list_filter = (PostsStatusFilter, "is_published")
     search_fields = ("title",)

@@ -15,9 +15,10 @@ try:
 except ImportError:
     raise ImportError("Install `readtime` package. Run `pip install readtime` ")
 
-from sage_seo.models.mixins.seo import SEOMixin, BlogDetailJsonLdMixin
+from sage_seo.models.mixins.seo import BlogDetailJsonLdMixin, SEOMixin
 from sage_tools.mixins.models.abstract import PictureOperationAbstract
 from sage_tools.mixins.models.base import TimeStampMixin, TitleSlugDescriptionMixin
+
 from sage_blog.repository.managers import PostDataAccessLayer
 
 

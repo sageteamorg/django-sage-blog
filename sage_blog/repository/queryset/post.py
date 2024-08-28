@@ -5,13 +5,13 @@ from django.contrib.postgres.search import SearchQuery, SearchVector, TrigramSim
 from django.db.models import (
     BooleanField,
     Case,
-    OuterRef,
-    Subquery,
     Count,
     ExpressionWrapper,
     F,
+    OuterRef,
     Q,
     QuerySet,
+    Subquery,
     Value,
     When,
     fields,
@@ -150,12 +150,14 @@ class PostQuerySet(QuerySet):
 
             elif "mysql" in database_engine or "mariadb" in database_engine:
                 return self.filter(
-                    Q(title__icontains=search_query) | Q(description__icontains=search_query)
+                    Q(title__icontains=search_query)
+                    | Q(description__icontains=search_query)
                 )
 
             elif "sqlite" in database_engine:
                 return self.filter(
-                    Q(title__icontains=search_query) | Q(description__icontains=search_query)
+                    Q(title__icontains=search_query)
+                    | Q(description__icontains=search_query)
                 )
         return self
 
@@ -167,8 +169,8 @@ class PostQuerySet(QuerySet):
         """
         if search_query:
             return self.filter(
-                Q(title__icontains=search_query) |
-                Q(description__icontains=search_query)
+                Q(title__icontains=search_query)
+                | Q(description__icontains=search_query)
             )
         return self
 
@@ -184,8 +186,8 @@ class PostQuerySet(QuerySet):
         if "postgresql" in database_engine:
             return (
                 self.annotate(
-                    similarity=TrigramSimilarity("title", search_query) +
-                                TrigramSimilarity("description", search_query)
+                    similarity=TrigramSimilarity("title", search_query)
+                    + TrigramSimilarity("description", search_query)
                 )
                 .filter(similarity__gt=0.1)
                 .order_by("-similarity")
@@ -195,13 +197,15 @@ class PostQuerySet(QuerySet):
             # MariaDB does not support trigram similarity directly
             # Mysql does not support trigram similarity directly
             return self.filter(
-                Q(title__icontains=search_query) | Q(description__icontains=search_query)
+                Q(title__icontains=search_query)
+                | Q(description__icontains=search_query)
             )
 
         elif "sqlite" in database_engine:
             # SQLite does not support trigram similarity directly
             return self.filter(
-                Q(title__icontains=search_query) | Q(description__icontains=search_query)
+                Q(title__icontains=search_query)
+                | Q(description__icontains=search_query)
             )
 
         return self.none()

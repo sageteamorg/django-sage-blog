@@ -16,7 +16,6 @@ class Command(BaseCommand):
     help = "Load a list of example data into the database"
 
     def handle(self, *args, **kwargs):
-
         logger.info("Generate Data for Blog")
         DGL = DataGeneratorLayer()
 
@@ -41,7 +40,7 @@ class Command(BaseCommand):
         )
         stop = timeit.default_timer()
         self.show_success_msg("create posts finished in: " + str(stop - start))
-        
+
         self.show_warning_msg("create FAQ")
         start = timeit.default_timer()
         DGL.create_faqs(

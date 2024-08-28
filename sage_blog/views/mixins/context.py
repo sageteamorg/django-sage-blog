@@ -1,6 +1,6 @@
 from django.views.generic.base import ContextMixin
 
-from sage_blog.models import PostCategory, PostTag, Post
+from sage_blog.models import Post, PostCategory, PostTag
 
 
 class SageBlogContextMixin(ContextMixin):

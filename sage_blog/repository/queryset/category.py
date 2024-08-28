@@ -16,9 +16,7 @@ class CategoryQuerySet(QuerySet):
         indicates the count of posts in that category.
         """
         published_posts = self.filter_published_posts()
-        qs = published_posts.annotate(
-            total_posts=Count("posts")
-        )
+        qs = published_posts.annotate(total_posts=Count("posts"))
         return qs
 
     def filter_published(self, is_published: bool = True):
@@ -28,13 +26,11 @@ class CategoryQuerySet(QuerySet):
         qs = self.filter(is_published=is_published)
         return qs
 
-    def filter_published_posts(self, is_published: bool=True):
+    def filter_published_posts(self, is_published: bool = True):
         """
         Prefetches related posts for each category in the queryset.
         """
-        published_posts_condition = Q(
-            posts__is_published=is_published
-        )
+        published_posts_condition = Q(posts__is_published=is_published)
         published = self.filter_published()
         qs = published.filter(published_posts_condition)
         return qs
@@ -52,16 +48,14 @@ class CategoryQuerySet(QuerySet):
         Excludes categories that are only associated with
         in published or discontinued posts.
         """
-        qs = self.filter(
-            posts__is_published=True
-        )
+        qs = self.filter(posts__is_published=True)
         return qs
 
     def filter_recent_categories(self, num_categories=5, obj=None):
         """
         Retrieves a specified number of the most recently created categories.
         If 'obj' is provided, it excludes that object from the results.
-        
+
         Args:
             num_categories (int): The number of recent categories to retrieve.
             obj (Optional[Category]): An optional Category object to exclude

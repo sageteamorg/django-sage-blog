@@ -1,4 +1,4 @@
-from typing import Optional, Any
+from typing import Any, Optional
 
 from django.db.models import Manager, QuerySet
 
@@ -20,7 +20,7 @@ class TagDataAccessLayer(Manager):
         return TagQuerySet(self.model, using=self._db)
 
     def filter_recent_tags(
-        self, days_ago: int = 30, limit: Optional[int] = None, obj: Any=None
+        self, days_ago: int = 30, limit: Optional[int] = None, obj: Any = None
     ) -> QuerySet:
         """
         Filter tags that have been used in posts within the specified number of days.

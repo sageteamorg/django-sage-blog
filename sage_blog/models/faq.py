@@ -4,7 +4,6 @@ FAQ Model Definition
 
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-
 from sage_tools.mixins.models.base import TimeStampMixin
 
 

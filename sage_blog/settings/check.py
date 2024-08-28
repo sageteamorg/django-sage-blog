@@ -1,6 +1,8 @@
 from django.conf import settings
-from django.core.checks import Error, Warning as CheckWarning, register
-from django.db import connection, OperationalError
+from django.core.checks import Error
+from django.core.checks import Warning as CheckWarning
+from django.core.checks import register
+from django.db import OperationalError, connection
 
 
 @register()
@@ -19,8 +21,9 @@ def check_postgres_extensions(app_configs, **_kwargs):
                     errors.append(
                         Error(
                             "pg_trgm extension is not installed",
-                            hint=("Run `CREATE EXTENSION pg_trgm;` in "
-                            "your PSQL database."
+                            hint=(
+                                "Run `CREATE EXTENSION pg_trgm;` in "
+                                "your PSQL database."
                             ),
                             id="postgres.E001",
                         )
