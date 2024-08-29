@@ -5,6 +5,7 @@ from django.utils import timezone
 from ..factories import PostCategoryFactory, PostFactory
 from sage_blog.models import PostCategory
 
+
 @pytest.mark.django_db
 class TestCategoryQuerySet:
 

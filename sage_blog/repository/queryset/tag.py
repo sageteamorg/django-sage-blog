@@ -62,16 +62,16 @@ class TagQuerySet(QuerySet):
 
         Examples:
             - To get overall trending tags with no time restriction:
-            >>> trending_tags = Tag.dal.filter_trend_tags(days_ago=0)
+            >>> trending_tags = Tag.objects.filter_trend_tags(days_ago=0)
 
             - To get tags that are trending in the last 7 days, used at least 10 times:
-            >>> weekly_trends = Tag.dal.filter_trend_tags(days_ago=7, min_count=10)
+            >>> weekly_trends = Tag.objects.filter_trend_tags(days_ago=7, min_count=10)
 
             - To get the top 5 overall trending tags:
-            >>> top_tags = Tag.dal.filter_trend_tags(days_ago=0, limit=5)
+            >>> top_tags = Tag.objects.filter_trend_tags(days_ago=0, limit=5)
 
             - To get the top 3 trending tags in the last 30 days:
-            >>> monthly = Tag.dal.filter_trend_tags(days_ago=30, min_count=5, limit=3)
+            >>> monthly = Tag.objects.filter_trend_tags(days_ago=30, min_count=5, limit=3)
         """
         if not isinstance(days_ago, int) or days_ago < 0:
             raise ValueError("`days_ago` must be a non-negative integer")
