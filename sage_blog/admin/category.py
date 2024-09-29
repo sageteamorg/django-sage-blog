@@ -1,12 +1,15 @@
 from django.contrib import admin
 from django.utils.translation import gettext_lazy as _
 
+from import_export.admin import ImportExportModelAdmin
+
 from sage_blog.admin.filters import PostsStatusFilter
 from sage_blog.models import PostCategory
+from sage_blog.resources import PostCategoryResource
 
 
 @admin.register(PostCategory)
-class PostCategoryAdmin(admin.ModelAdmin):
+class PostCategoryAdmin(ImportExportModelAdmin):
     """
     Django admin customization for the PostCategory model.
 
@@ -14,6 +17,8 @@ class PostCategoryAdmin(admin.ModelAdmin):
     in the Django admin interface. It provides an intuitive interface for managing blog
     post categories.
     """
+
+    resource_class = PostCategoryResource
 
     # Display settings
     admin_priority = 1

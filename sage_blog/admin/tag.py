@@ -1,11 +1,13 @@
 from django.contrib import admin
 from django.utils.translation import gettext_lazy as _
+from import_export.admin import ImportExportModelAdmin
 
 from sage_blog.models import PostTag
+from sage_blog.resources import PostTagResource
 
 
 @admin.register(PostTag)
-class PostTagAdmin(admin.ModelAdmin):
+class PostTagAdmin(ImportExportModelAdmin):
     """
     Django admin customization for the PostTag model.
 
@@ -13,6 +15,8 @@ class PostTagAdmin(admin.ModelAdmin):
     in the Django admin interface. It provides an easy-to-use interface for managing
     tags associated with blog posts.
     """
+
+    resource_class = PostTagResource
 
     admin_priority = 3
     list_display = ("title", "slug", "is_published", "modified_at")
