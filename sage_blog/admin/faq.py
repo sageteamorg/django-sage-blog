@@ -4,14 +4,19 @@ FAQ Administrators
 
 from django.contrib import admin
 
+from import_export.admin import ImportExportModelAdmin
+
 from sage_blog.models import PostFaq
+from sage_blog.resources import PostFaqResource
 
 
 @admin.register(PostFaq)
-class PostFaqAdmin(admin.ModelAdmin):
+class PostFaqAdmin(ImportExportModelAdmin):
     """
     FAQ Admin
     """
+
+    resource_class = PostFaqResource
 
     admin_priority = 5
     list_display = ("question", "post", "created_at", "modified_at")

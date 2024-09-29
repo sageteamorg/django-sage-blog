@@ -3,6 +3,7 @@ from django.urls import reverse
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
+from django_ckeditor_5.fields import CKEditor5Field
 try:
     from sorl.thumbnail.fields import ImageField
 except ImportError:
@@ -32,6 +33,15 @@ class Post(
     """
     Represents a blog post in the system.
     """
+
+    description = CKEditor5Field(
+        _("Description"),
+        help_text=_(
+            "Enter a detailed description of the item. This can include its purpose, "
+            "characteristics, and any other relevant information."
+        ),
+        db_comment="Stores a detailed description of the instance.",
+    )
 
     is_published = models.BooleanField(
         _("Is Published"),
