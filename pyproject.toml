@@ -39,7 +39,7 @@ django-filter = "^24.2"
 tqdm = "^4.66.5"
 django-import-export = "^4.1.1"
 django-ckeditor-5 = "^0.2.13"
-django-sage-seo = "^0.3.10"
+django-sage-seo = "^0.3.11"
 
 [tool.poetry.group.dev.dependencies]
 black = "^24.4.2"
