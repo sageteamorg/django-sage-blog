@@ -1,8 +1,11 @@
 from django.contrib import admin
 from django.utils.translation import gettext_lazy as _
+
 from sorl.thumbnail.admin import AdminImageMixin
+from import_export.admin import ImportExportModelAdmin
 
 from sage_blog.models import Post, PostFaq
+from sage_blog.resources import PostResource
 
 
 class PostFaqInline(admin.TabularInline):
@@ -11,7 +14,7 @@ class PostFaqInline(admin.TabularInline):
 
 
 @admin.register(Post)
-class PostAdmin(admin.ModelAdmin, AdminImageMixin):
+class PostAdmin(ImportExportModelAdmin, AdminImageMixin):
     """
     Django admin customization for the Post model.
 
@@ -19,6 +22,8 @@ class PostAdmin(admin.ModelAdmin, AdminImageMixin):
     in the Django admin interface. It also provides a customized form layout for
     editing and adding new Posts.
     """
+
+    resource_class = PostResource
 
     admin_priority = 2
     inlines = (PostFaqInline,)
