@@ -19,45 +19,45 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 #: .\sage_blog\admin\category.py:41 .\sage_blog\admin\tag.py:31
 msgid "Timestamps"
-msgstr ""
+msgstr "زمان‌بندی‌ها"
 
 #: .\sage_blog\admin\category.py:50
 msgid "Published Posts"
-msgstr ""
+msgstr "پست های منتشر شده"
 
 #: .\sage_blog\admin\filters\category.py:6
 msgid "Posts Status"
-msgstr ""
+msgstr "وضعیت پست ها"
 
 #: .\sage_blog\admin\filters\category.py:11
 msgid "No Posts"
-msgstr ""
+msgstr "بدون پست"
 
 #: .\sage_blog\admin\filters\category.py:12
 msgid "Only With Published Posts"
-msgstr ""
+msgstr "تنها با پست های منتشر شده"
 
 #: .\sage_blog\admin\post.py:120 .\sage_blog\models\post.py:96
 #: .\sage_blog\models\tag.py:35
 msgid "Tags"
-msgstr ""
+msgstr "برچسب‌ها"
 
 #: .\sage_blog\admin\post.py:125 .\sage_blog\models\post.py:57
 msgid "Summary"
-msgstr ""
+msgstr "خلاصه"
 
 #: .\sage_blog\admin\post.py:127
 msgid "No Summary"
-msgstr ""
+msgstr "بدون خلاصه"
 
 #: .\sage_blog\apps.py:8
 msgid "Blog"
-msgstr ""
+msgstr "بلاگ"
 
 #: .\sage_blog\models\category.py:14 .\sage_blog\models\post.py:47
 #: .\sage_blog\models\tag.py:14
 msgid "Is Published"
-msgstr ""
+msgstr "منتشر شده است"
 
 #: .\sage_blog\models\category.py:17
 msgid ""
@@ -65,104 +65,110 @@ msgid ""
 "displayed to all users. If unpublished, only staff users can view the "
 "category."
 msgstr ""
+"مشخص کنید آیا این دسته‌بندی در حال حاضر منتشر شده و باید برای همه کاربران نمایش داده شود یا خیر. اگر منتشر نشده باشد، تنها کارکنان می‌توانند دسته‌بندی را مشاهده کنند."
 
 #: .\sage_blog\models\category.py:30 .\sage_blog\models\post.py:104
 msgid "Category"
-msgstr ""
+msgstr "دسته‌بندی"
 
 #: .\sage_blog\models\category.py:31
 msgid "Categories"
-msgstr ""
+msgstr "دسته‌بندی‌ها"
 
 #: .\sage_blog\models\faq.py:21
 msgid "Question"
-msgstr ""
+msgstr "سوال"
 
 #: .\sage_blog\models\faq.py:24
 msgid ""
 "Enter the FAQ question. Keep it clear and concise to aid easy understanding."
 msgstr ""
+"سوال متداول را وارد کنید. آن را واضح و مختصر نگه دارید تا درک آسان‌تر شود."
 
 #: .\sage_blog\models\faq.py:31
 msgid "Answer"
-msgstr ""
+msgstr "پاسخ"
 
 #: .\sage_blog\models\faq.py:33
 msgid ""
 "Provide a detailed answer to the FAQ question. Aim for clarity and "
 "completeness."
 msgstr ""
+"یک پاسخ دقیق به سوال متداول ارائه دهید. به وضوح و کامل بودن توجه کنید."
 
 #: .\sage_blog\models\faq.py:43 .\sage_blog\models\post.py:119
 msgid "Post"
-msgstr ""
+msgstr "پست"
 
 #: .\sage_blog\models\faq.py:44
 msgid "Choose the post of the faq."
-msgstr ""
+msgstr "پست مربوط به سوالات متداول را انتخاب کنید."
 
 #: .\sage_blog\models\faq.py:51 .\sage_blog\models\faq.py:52
 msgid "FAQ"
-msgstr ""
+msgstr "سوالات متداول"
 
 #: .\sage_blog\models\post.py:38
 msgid "Description"
-msgstr ""
+msgstr "توضیحات"
 
 #: .\sage_blog\models\post.py:40
 msgid ""
 "Enter a detailed description of the item. This can include its purpose, "
 "characteristics, and any other relevant information."
 msgstr ""
+"یک توضیح دقیق از مورد وارد کنید. این می‌تواند شامل هدف، ویژگی‌ها و هر اطلاعات مرتبط دیگری باشد."
 
 #: .\sage_blog\models\post.py:50
 msgid ""
 "Indicate whether this post is currently published and should be displayed to "
 "all users. If unpublished, only staff users can view the post."
 msgstr ""
+"مشخص کنید آیا این پست در حال حاضر منتشر شده و باید برای همه کاربران نمایش داده شود یا خیر. اگر منتشر نشده باشد، تنها کاربران کارکنان می‌توانند پست را مشاهده کنند."
 
 #: .\sage_blog\models\post.py:61
 msgid "Enter a brief summary of the post, up to 140 characters."
-msgstr ""
+msgstr "یک خلاصه مختصر از پست وارد کنید، حداکثر تا ۱۴۰ کاراکتر."
 
 #: .\sage_blog\models\post.py:66
 msgid "Picture of Post"
-msgstr ""
+msgstr "تصویر پست"
 
 #: .\sage_blog\models\post.py:71 .\sage_blog\models\post.py:82
 msgid "Upload an image representing the post. Ideal dimensions are [x] by [y]."
-msgstr ""
+msgstr "یک تصویر نمایانگر پست بارگذاری کنید. ابعاد ایده‌آل [x] در [y] است."
 
 #: .\sage_blog\models\post.py:77
 msgid "Banner of Post Detail"
-msgstr ""
+msgstr "بنر جزئیات پست"
 
 #: .\sage_blog\models\post.py:88
 msgid "Published At"
-msgstr ""
+msgstr "منتشر شده در"
 
 #: .\sage_blog\models\post.py:90
 msgid "The date and time when the post was published."
-msgstr ""
+msgstr "تاریخ و زمان انتشار پست."
 
 #: .\sage_blog\models\post.py:97
 msgid "Select or add tags to categorize the post."
-msgstr ""
+msgstr "برچسب‌ها را برای دسته‌بندی پست انتخاب یا اضافه کنید."
 
 #: .\sage_blog\models\post.py:105
 msgid "Choose the category of the post."
-msgstr ""
+msgstr "دسته‌بندی پست را انتخاب کنید."
 
 #: .\sage_blog\models\post.py:120
 msgid "Posts"
-msgstr ""
+msgstr "پستها"
 
 #: .\sage_blog\models\tag.py:17
 msgid ""
 "Indicate whether this tag is currently published and should be displayed to "
 "all users. If unpublished, only staff users can view the tag."
 msgstr ""
+"مشخص کنید آیا این برچسب در حال حاضر منتشر شده و باید برای همه کاربران نمایش داده شود یا خیر. اگر منتشر نشده باشد، تنها کاربران کارکنان می‌توانند برچسب را مشاهده کنند."
 
 #: .\sage_blog\models\tag.py:34
 msgid "Tag"
-msgstr ""
+msgstr "برچسب"
