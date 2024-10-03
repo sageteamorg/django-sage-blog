@@ -771,30 +771,45 @@ django = ">=2.0"
 jsonschema = "*"
 
 [[package]]
+name = "django-modeltranslation"
+version = "0.19.9"
+description = "Translates Django models using a registration approach."
+optional = false
+python-versions = "*"
+files = [
+    {file = "django_modeltranslation-0.19.9-py3-none-any.whl", hash = "sha256:3474e61488201b7babdc575c1774f653574d09e410a8c96c5c6a8a84716f1dd6"},
+    {file = "django_modeltranslation-0.19.9.tar.gz", hash = "sha256:78f1bf32b0fb04e5970b988bd7cd17fe2bdfaae69012048c338af4610a7807db"},
+]
+
+[package.dependencies]
+Django = ">=4.2"
+typing-extensions = {version = ">=4.0.1", markers = "python_version < \"3.11\""}
+
+[[package]]
 name = "django-sage-seo"
-version = "0.3.11"
+version = "0.3.14"
 description = "SEO tools for Django"
 optional = false
 python-versions = "<4.0,>=3.8"
 files = [
-    {file = "django_sage_seo-0.3.11-py3-none-any.whl", hash = "sha256:c5247c1ac9734d0e83da4ff069b4b91b11e6248bb2be593d8ae8c706768c1126"},
-    {file = "django_sage_seo-0.3.11.tar.gz", hash = "sha256:57b41181ed0613fd2ec2b5e91c2f6cf1a937a4ab812426cc53de511840176843"},
+    {file = "django_sage_seo-0.3.14-py3-none-any.whl", hash = "sha256:192196b59b0195275f7aae8699d778d4cccb35d27538fbecdc33fbbc6d0845fa"},
+    {file = "django_sage_seo-0.3.14.tar.gz", hash = "sha256:37aa7f818997bf5de6c7e19d8fadb3ddfa600a644b2b6a018e179b574b7ebda5"},
 ]
 
 [package.dependencies]
 django = {version = ">=4.2,<5.3", markers = "python_version >= \"3.10\""}
 django-jsonforms = ">=1.0,<3.0"
-django-sage-tools = ">=0.3.2,<0.4.0"
+django-sage-tools = ">=0.3.5,<0.4.0"
 
 [[package]]
 name = "django-sage-tools"
-version = "0.3.2"
+version = "0.3.5"
 description = "Reusable, generic mixins for Django"
 optional = false
 python-versions = "<4.0,>=3.8"
 files = [
-    {file = "django_sage_tools-0.3.2-py3-none-any.whl", hash = "sha256:40c297dc5bda2d38263f38990d36966ebf16fd3ff4e535d95df4c87ff31f7e1e"},
-    {file = "django_sage_tools-0.3.2.tar.gz", hash = "sha256:abde65753ffd0b626dbb2ec17f18c0b3e9e8153a8b02c6344c9964fcc44edde4"},
+    {file = "django_sage_tools-0.3.5-py3-none-any.whl", hash = "sha256:e511bcc8f682402d6710e0755dedc622c00bc78d0537d81f3997203ab65fde68"},
+    {file = "django_sage_tools-0.3.5.tar.gz", hash = "sha256:c825f80ca2bc10b2c61ad5ab3176d32cc66d324886eaaf8fdb2362d1bd0379f8"},
 ]
 
 [package.dependencies]
@@ -2478,4 +2493,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.10,<4.0"
-content-hash = "a82a59c93b20f14921c200afdfaf02f8d5e846d96900ab6224dc03a5e9233569"
+content-hash = "5d87cf9d1d56648e5f8b1130bc0796da6aff5f7764c7596c518d3d95ad263867"
