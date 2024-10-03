@@ -1,0 +1,169 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-10-03 14:33+0330\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+#: .\sage_blog\admin\category.py:41 .\sage_blog\admin\tag.py:31
+msgid "Timestamps"
+msgstr ""
+
+#: .\sage_blog\admin\category.py:50
+msgid "Published Posts"
+msgstr ""
+
+#: .\sage_blog\admin\filters\category.py:6
+msgid "Posts Status"
+msgstr ""
+
+#: .\sage_blog\admin\filters\category.py:11
+msgid "No Posts"
+msgstr ""
+
+#: .\sage_blog\admin\filters\category.py:12
+msgid "Only With Published Posts"
+msgstr ""
+
+#: .\sage_blog\admin\post.py:120 .\sage_blog\models\post.py:96
+#: .\sage_blog\models\tag.py:35
+msgid "Tags"
+msgstr ""
+
+#: .\sage_blog\admin\post.py:125 .\sage_blog\models\post.py:57
+msgid "Summary"
+msgstr ""
+
+#: .\sage_blog\admin\post.py:127
+msgid "No Summary"
+msgstr ""
+
+#: .\sage_blog\apps.py:8
+msgid "Blog"
+msgstr ""
+
+#: .\sage_blog\models\category.py:14 .\sage_blog\models\post.py:47
+#: .\sage_blog\models\tag.py:14
+msgid "Is Published"
+msgstr ""
+
+#: .\sage_blog\models\category.py:17
+msgid ""
+"Indicate whether this category is currently published and should be "
+"displayed to all users. If unpublished, only staff users can view the "
+"category."
+msgstr ""
+
+#: .\sage_blog\models\category.py:30 .\sage_blog\models\post.py:104
+msgid "Category"
+msgstr ""
+
+#: .\sage_blog\models\category.py:31
+msgid "Categories"
+msgstr ""
+
+#: .\sage_blog\models\faq.py:21
+msgid "Question"
+msgstr ""
+
+#: .\sage_blog\models\faq.py:24
+msgid ""
+"Enter the FAQ question. Keep it clear and concise to aid easy understanding."
+msgstr ""
+
+#: .\sage_blog\models\faq.py:31
+msgid "Answer"
+msgstr ""
+
+#: .\sage_blog\models\faq.py:33
+msgid ""
+"Provide a detailed answer to the FAQ question. Aim for clarity and "
+"completeness."
+msgstr ""
+
+#: .\sage_blog\models\faq.py:43 .\sage_blog\models\post.py:119
+msgid "Post"
+msgstr ""
+
+#: .\sage_blog\models\faq.py:44
+msgid "Choose the post of the faq."
+msgstr ""
+
+#: .\sage_blog\models\faq.py:51 .\sage_blog\models\faq.py:52
+msgid "FAQ"
+msgstr ""
+
+#: .\sage_blog\models\post.py:38
+msgid "Description"
+msgstr ""
+
+#: .\sage_blog\models\post.py:40
+msgid ""
+"Enter a detailed description of the item. This can include its purpose, "
+"characteristics, and any other relevant information."
+msgstr ""
+
+#: .\sage_blog\models\post.py:50
+msgid ""
+"Indicate whether this post is currently published and should be displayed to "
+"all users. If unpublished, only staff users can view the post."
+msgstr ""
+
+#: .\sage_blog\models\post.py:61
+msgid "Enter a brief summary of the post, up to 140 characters."
+msgstr ""
+
+#: .\sage_blog\models\post.py:66
+msgid "Picture of Post"
+msgstr ""
+
+#: .\sage_blog\models\post.py:71 .\sage_blog\models\post.py:82
+msgid "Upload an image representing the post. Ideal dimensions are [x] by [y]."
+msgstr ""
+
+#: .\sage_blog\models\post.py:77
+msgid "Banner of Post Detail"
+msgstr ""
+
+#: .\sage_blog\models\post.py:88
+msgid "Published At"
+msgstr ""
+
+#: .\sage_blog\models\post.py:90
+msgid "The date and time when the post was published."
+msgstr ""
+
+#: .\sage_blog\models\post.py:97
+msgid "Select or add tags to categorize the post."
+msgstr ""
+
+#: .\sage_blog\models\post.py:105
+msgid "Choose the category of the post."
+msgstr ""
+
+#: .\sage_blog\models\post.py:120
+msgid "Posts"
+msgstr ""
+
+#: .\sage_blog\models\tag.py:17
+msgid ""
+"Indicate whether this tag is currently published and should be displayed to "
+"all users. If unpublished, only staff users can view the tag."
+msgstr ""
+
+#: .\sage_blog\models\tag.py:34
+msgid "Tag"
+msgstr ""
