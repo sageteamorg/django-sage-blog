@@ -5,13 +5,14 @@ FAQ Administrators
 from django.contrib import admin
 
 from import_export.admin import ImportExportModelAdmin
+from modeltranslation.admin import TabbedTranslationAdmin
 
 from sage_blog.models import PostFaq
 from sage_blog.resources import PostFaqResource
 
 
 @admin.register(PostFaq)
-class PostFaqAdmin(ImportExportModelAdmin):
+class PostFaqAdmin(ImportExportModelAdmin, TabbedTranslationAdmin):
     """
     FAQ Admin
     """

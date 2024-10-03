@@ -3,18 +3,19 @@ from django.utils.translation import gettext_lazy as _
 
 from sorl.thumbnail.admin import AdminImageMixin
 from import_export.admin import ImportExportModelAdmin
+from modeltranslation.admin import TabbedTranslationAdmin, TranslationTabularInline
 
 from sage_blog.models import Post, PostFaq
 from sage_blog.resources import PostResource
 
 
-class PostFaqInline(admin.TabularInline):
+class PostFaqInline(TranslationTabularInline):
     model = PostFaq
     extra = 1
 
 
 @admin.register(Post)
-class PostAdmin(ImportExportModelAdmin, AdminImageMixin):
+class PostAdmin(ImportExportModelAdmin, TabbedTranslationAdmin, AdminImageMixin):
     """
     Django admin customization for the Post model.
 

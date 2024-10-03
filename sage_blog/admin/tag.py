@@ -1,13 +1,15 @@
 from django.contrib import admin
 from django.utils.translation import gettext_lazy as _
+
 from import_export.admin import ImportExportModelAdmin
+from modeltranslation.admin import TabbedTranslationAdmin
 
 from sage_blog.models import PostTag
 from sage_blog.resources import PostTagResource
 
 
 @admin.register(PostTag)
-class PostTagAdmin(ImportExportModelAdmin):
+class PostTagAdmin(ImportExportModelAdmin, TabbedTranslationAdmin):
     """
     Django admin customization for the PostTag model.
 
