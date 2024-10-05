@@ -166,8 +166,5 @@ manage.py
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
 
-# Ignore all migrations files except __init__.py
-**/migrations/*
-!**/migrations/__init__.py
 uploads/**
 blog/**
