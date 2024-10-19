@@ -103,9 +103,31 @@ class TagQuerySet(QuerySet):
 
     def annotate_total_posts(self) -> QuerySet:
         """
-        Annotate tags with the total number of associated posts.
+        Annotates each tag with the total number of posts in that tag.
+
+        This method uses Django's Count aggregation function to count the number
+        of posts associated with each tag. The resulting queryset will have
+        an additional attribute 'total_posts' for each tag object, which
+        indicates the count of posts in that tag.
         """
-        qs = self.annotate(total_posts=Count("posts"))
+        published_posts = self.filter_published_posts()
+        qs = published_posts.annotate(total_posts=Count("posts"))
+        return qs
+
+    def filter_published(self, is_published: bool = True):
+        """
+        Filters categories based on their published status.
+        """
+        qs = self.filter(is_published=is_published)
+        return qs
+
+    def filter_published_posts(self, is_published: bool = True):
+        """
+        Prefetches related posts for each tag in the queryset.
+        """
+        published_posts_condition = Q(posts__is_published=is_published)
+        published = self.filter_published()
+        qs = published.filter(published_posts_condition)
         return qs
 
     def search(self, search_term) -> QuerySet:

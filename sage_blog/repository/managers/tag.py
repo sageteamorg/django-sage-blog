@@ -111,3 +111,16 @@ class TagDataAccessLayer(Manager):
         Filters tags based on the publication date range of the associated posts.
         """
         return self.get_queryset().filter_by_post_date_range(start_date, end_date)
+
+    
+    def filter_published(self, is_published=True):
+        """
+        Filters categories based on their active status.
+        """
+        return self.get_queryset().filter_published(is_published)
+
+    def filter_published_posts(self, is_published=True):
+        """
+        Prefetches related posts for each category in the queryset.
+        """
+        return self.get_queryset().filter_published_posts(is_published)
