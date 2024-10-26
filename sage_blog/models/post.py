@@ -106,6 +106,21 @@ class Post(
         db_comment="The category to which the blog post belongs.",
     )
 
+    suggested_posts = models.ManyToManyField(
+        "self",
+        verbose_name=_("Suggested posts"),
+        blank=True,
+        help_text=_("Select other posts to suggest alongside this product."),
+    )
+
+    related_posts = models.ManyToManyField(
+        "self",
+        verbose_name=_("Related posts"),
+        blank=True,
+        symmetrical=False,
+        help_text=_("Select posts related to this product."),
+    )
+
     objects = PostDataAccessLayer()
 
     class Meta:

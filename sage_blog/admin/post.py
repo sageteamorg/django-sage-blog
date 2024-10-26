@@ -49,7 +49,11 @@ class PostAdmin(ImportExportModelAdmin, TabbedTranslationAdmin, AdminImageMixin)
     )
     filter_horizontal = ("tags",)
     save_on_top = True
-    autocomplete_fields = ("category",)
+    autocomplete_fields = (
+        "category",
+        "suggested_posts",
+        "related_posts",
+    )
     date_hierarchy = "published_at"
     ordering = ("-published_at",)
     readonly_fields = ("created_at", "modified_at", "slug")
@@ -98,10 +102,18 @@ class PostAdmin(ImportExportModelAdmin, TabbedTranslationAdmin, AdminImageMixin)
             },
         ),
         (
-            "Tags",
+            _("Tags & Relationships"),
             {
-                "fields": ("tags",),
+                "fields": (
+                    "tags",
+                    "suggested_posts",
+                    "related_posts",
+                ),
                 "classes": ("collapse",),
+                "description": _(
+                    "Enhance the post's visibility by adding tags and "
+                    "linking related posts."
+                ),
             },
         ),
         (
