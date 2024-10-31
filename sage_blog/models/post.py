@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+from django.conf import settings
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 
@@ -88,6 +89,17 @@ class Post(
         _("Published At"),
         default=timezone.now,
         help_text=_("The date and time when the post was published."),
+    )
+
+    author = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        verbose_name=_("Author"),
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name="posts",
+        help_text=_("Select the author of the post."),
+        db_comment="References the user who authored the post. Can be null if no specific author is assigned.",
     )
 
     tags = models.ManyToManyField(
