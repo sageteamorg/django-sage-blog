@@ -50,6 +50,7 @@ class PostAdmin(ImportExportModelAdmin, TabbedTranslationAdmin, AdminImageMixin)
     filter_horizontal = ("tags",)
     save_on_top = True
     autocomplete_fields = (
+        "author",
         "category",
         "suggested_posts",
         "related_posts",
@@ -66,6 +67,7 @@ class PostAdmin(ImportExportModelAdmin, TabbedTranslationAdmin, AdminImageMixin)
             "Content Details",
             {
                 "fields": (
+                    "author",
                     "summary",
                     "description",
                     "picture",
