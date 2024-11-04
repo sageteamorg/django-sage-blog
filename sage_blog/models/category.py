@@ -24,7 +24,7 @@ class PostCategory(TitleSlugMixin, TimeStampMixin):
         ),
     )
 
-    objects = CategoryDataAccessLayer()
+    objects: CategoryDataAccessLayer = CategoryDataAccessLayer()
 
     class Meta:
         verbose_name = _("Category")

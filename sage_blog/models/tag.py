@@ -24,7 +24,7 @@ class PostTag(TitleSlugMixin, TimeStampMixin):
         ),
     )
 
-    objects = TagDataAccessLayer()
+    objects: TagDataAccessLayer = TagDataAccessLayer()
 
     class Meta:
         """

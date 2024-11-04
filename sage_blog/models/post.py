@@ -133,7 +133,7 @@ class Post(
         help_text=_("Select posts related to this product."),
     )
 
-    objects = PostDataAccessLayer()
+    objects: PostDataAccessLayer = PostDataAccessLayer()
 
     class Meta:
         """
