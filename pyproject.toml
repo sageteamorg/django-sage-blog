@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "django-sage-blog"
-version = "0.2.7"
+version = "0.2.8"
 description = "Comprehensive Django package designed to seamlessly integrate blogging capabilities into your Django project."
 authors = ["Sepehr Akbarzadeh <sepehr@sageteam.org>"]
 readme = "README.md"
