@@ -1,10 +1,10 @@
 from django.db import models
-from django.urls import reverse
 from django.conf import settings
 from django.utils import timezone
-from django.utils.translation import gettext_lazy as _
-
 from django_ckeditor_5.fields import CKEditor5Field
+from django.utils.translation import gettext_lazy as _
+from django.core.validators import FileExtensionValidator
+
 try:
     from sorl.thumbnail.fields import ImageField
 except ImportError:
@@ -83,6 +83,19 @@ class Post(
             "Upload an image representing the post. Ideal dimensions are [x] by [y]."
         ),
         db_comment="Image file associated with the blog post.",
+    )
+
+    video = models.FileField(
+        _("Video"),
+        max_length=110,
+        upload_to="blog/posts/videos/",
+        null=True,
+        blank=True,
+        validators=[
+            FileExtensionValidator(
+                allowed_extensions=["mp4", "webm", "ogv"]
+            )
+        ]
     )
 
     published_at = models.DateTimeField(
