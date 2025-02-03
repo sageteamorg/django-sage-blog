@@ -72,6 +72,7 @@ class PostAdmin(ImportExportModelAdmin, TabbedTranslationAdmin, AdminImageMixin)
                     "description",
                     "picture",
                     "banner",
+                    "video",
                     "alternate_text",
                 )
             },
